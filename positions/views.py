@@ -38,13 +38,14 @@ def home_view(request):
 
     return render(request, 'positions/main.html', context)
 
-# def prices(request):
-#     notfound = False
-#     if request.method == 'POST':
-#         quote = request.POST.get('quote').upper()
-#         prices = requests.get(
-#             "https://min-api.cryptocompare.com/data/pricemultifull?fsyms="+quote+"&tsyms=USD").json()
-#         return render(request, 'crypto_proj/prices.html', {'quote': quote, 'prices': prices})
-#     else:
-#         notfound = True
-#     return render(request, 'crypto_proj/prices.html', {'notfound': notfound})
+
+def prices(request):
+    notfound = False
+    if request.method == 'POST':
+        quote = request.POST.get('quote').upper()
+        prices = requests.get(
+            "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=" + quote + "&tsyms=USD").json()
+        return render(request, 'crypto_proj/prices.html', {'quote': quote, 'prices': prices})
+    else:
+        notfound = True
+    return render(request, 'crypto_proj/prices.html', {'notfound': notfound})
