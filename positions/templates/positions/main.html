@@ -7,6 +7,14 @@ main page
 {% block content %}
 
 <style>
+
+.newscontainer {
+    background-color:white;
+}
+
+.table {
+border: 1px solid black;
+}
         .recentNews {
     background-color: rgb(20, 117, 175)
 }
@@ -17,7 +25,10 @@ main page
     font-family: 'nimbus-sans-condensed', sans-serif;
     font-size:55px;
     font-weight:bold;
-    color: #fff;
+    color: black;
+    border: 1px solid black;
+    border-radius: 20px;
+    margin-top: 40px;
 }
 .recentNews .row {
     display: flex;
@@ -26,7 +37,7 @@ main page
     margin-bottom: 30px;
 }
 .recentNews .ct-blog {
-    margin-bottom: 30px;
+    margin-bottom: 50px;
 }
 .ct-blog .inner {
     background-color: #FFF;
@@ -35,9 +46,16 @@ main page
     cursor: pointer;
     height: 100%;
 }
-.ct-blog .inner:hover {
-    background-color: #e6e6e6;
-}
+<!--.ct-blog .inner:hover {-->
+<!--    background-color: gray;-->
+<!--}-->
+
+<!--.ct-blog .inner, .ct-blog .inner .btn {-->
+<!--    background-color: gray;-->
+<!--}-->
+
+
+
 .ct-blog .fauxcrop {
     height: 180px;
     overflow: hidden;
@@ -90,14 +108,61 @@ main page
     font-size: 24px;
     transition: all 0.2s ease-in-out 0s;
 }
-.btn-news.btn-contests a:hover {
-    color: #000;
+<!--.btn-news.btn-contests a:hover {-->
+<!--    color: #000;-->
+<!--}-->
+
+<!--.ct-blog-content {-->
+<!--   position: relative;-->
+<!--}-->
+
+<!--.btn {-->
+<!--   position: absolute;-->
+<!--   bottom: -10px;-->
+<!--   left: 50%;-->
+<!--   transform: translate(-50%, 50%);-->
+<!--   margin: 0;-->
+<!--}-->
+
+
+.ct-blog-header {
+   position: relative;
+   display: block;
+   width: 100%;
+   word-wrap: break-word;
+   overflow: hidden;
 }
-    </style>
+
+<!--.btn {-->
+<!--   position: absolute;-->
+<!--   bottom: 10px;-->
+<!--   right: 45px;-->
+<!--}-->
+
+.newsbtn {
+   position: absolute;
+   bottom: 21px;
+   right: 50%;
+   transform: translate(50%, 50%);
+   margin-bottom:10px;
+}
+
+.block {
+    padding-bottom: 25px;
+}
+
+.down .newsbtn {
+  border: none;
+  display: block;
+}
+
+
+
+</style>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href="#">Crypto News Network</a>
-   <form class="form-inline my-2 my-lg-0 ml-auto" action="" method="get">
+    <form class="form-inline my-2 my-lg-0 ml-auto" action="" method="get">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
@@ -105,45 +170,45 @@ main page
 </nav>
 
 <div class="jumbotron jumbotron-fluid text-center bg-light">
-  <div class="container">
-    <p class="lead">Your one-stop destination for all things cryptocurrency.</p>
-    <hr class="my-4">
-    <p>Stay up-to-date on the latest market trends and developments with our comprehensive data on the top 100 cryptocurrencies by market capitalization.</p>
-    <p>Dive deeper into the world of digital currencies with our hand-picked selection of relevant news articles and expert analysis.</p>
-  </div>
+    <div class="container">
+        <p class="lead">Your one-stop destination for all things cryptocurrency.</p>
+        <hr class="my-4">
+        <p>Stay up-to-date on the latest market trends and developments with our comprehensive data on the top 100
+            cryptocurrencies by market capitalization.</p>
+        <p>Dive deeper into the world of digital currencies with our hand-picked selection of relevant news articles and
+            expert analysis.</p>
+    </div>
 </div>
 
- <div style="height: 990px; overflow-y: scroll; background-color:white; color:white;">
-     <table class="table" style="height: 50px; overflow-y: scroll;">
-    <thead>
-      <tr>
-        <th scope='col'>Rank</th>
-        <th scope='col'>Logo</th>
-        <th scope='col'>Name</th>
-        <th scope='col'>Market cap</th>
-        <th scope='col'>Price</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% if data %}
+<div style="height: 990px; overflow-y: scroll; background-color:white; color:white;">
+    <table class="table" style="height: 50px; overflow-y: scroll;">
+        <thead>
+        <tr>
+            <th scope='col'>Rank</th>
+            <th scope='col'>Logo</th>
+            <th scope='col'>Name</th>
+            <th scope='col'>Market cap</th>
+            <th scope='col'>Price</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if data %}
         {% for obj in data %}
-          <tr>
-              <td class="align-middle">{{obj.market_cap_rank}}</td>
+        <tr>
+            <td class="align-middle">{{obj.market_cap_rank}}</td>
             <td><img src={{obj.image}} height='70'></td>
             <td class="align-middle">{{obj.name}}</td>
             <td class="align-middle">${{ obj.market_cap }}</td>
             <td class="align-middle">${{obj.current_price}}</td>
-          </tr>
+        </tr>
         {% endfor %}
         {% else %}
-          <h3>No data</h3>
-      {% endif %}
-    </tbody>
-  </table>
+        <h3>No data</h3>
+        {% endif %}
+        </tbody>
+    </table>
 
- </div>
-
-
+</div>
 
 
 <!--<div class="container">-->
@@ -165,28 +230,32 @@ main page
 
 
 <section class="recentNews">
-  <div class="container">
-    <h2 class="news-title">Recent News</h2>
-    <div class="row">
-        {% for news in newses %}
-      <div class="ct-blog col-sm-6 col-md-4">
-        <div class="inner">
-          <div class="fauxcrop">
-              <a href="#"><img class="card-img-top" src="{{ news.imageurl }}" alt="{{ news.source }}" style="max-height:200px"></a>
-          </div>
-          <div class="ct-blog-content">
-            <h3 class="ct-blog-header">
-              {{ news.title }}
-            </h3>
-          </div>
+    <div class="newscontainer">
+        <h2 class="news-title">Recent News</h2>
+        <div class="row">
+            {% for news in newses %}
+            <div class="ct-blog col-sm-6 col-md-4 block">
+                <div class="inner">
+                    <div class="fauxcrop">
+                        <img class="card-img-top" src="{{ news.imageurl }}" alt="{{ news.source }}"
+                             style="max-height:200px">
+                    </div>
+                    <div class="ct-blog-content">
+                        <div class="down">
+                            <h3 class="ct-blog-header ">
+                                {{ news.title|truncatechars:'' }}
+                            </h3>
+                            <a href="{{ news.url }}" class="btn btn-dark newsbtn">Read More...</a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            {% endfor %}
         </div>
-      </div>
-
-        {% endfor %}
     </div>
-  </div>
 </section>
-
 
 
 {% endblock content %}
