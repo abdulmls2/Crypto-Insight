@@ -1,0 +1,134 @@
+ h1 {
+     color: red;
+     text-align: center;
+ }
+
+ .navbar-dark .navbar-brand {
+     padding-left: 10px;
+     font-size: 33px;
+ }
+
+ .newscontainer {
+     background-color: white;
+ }
+
+ .table {
+     margin-top: 20px;
+ }
+
+ .recentNews {
+     background-color: rgb(20, 117, 175)
+ }
+
+ .recentNews .news-title {
+     text-align: center;
+     padding-top: 15px;
+     padding-bottom: 15px;
+     font-size: 55px;
+     border: 0.5px solid black;
+     border-radius: 10px;
+     margin-top: 40px;
+ }
+
+ .bd-placeholder-img {
+     font-size: 1.125rem;
+     text-anchor: middle;
+     -webkit-user-select: none;
+     -moz-user-select: none;
+     user-select: none;
+ }
+
+ @media (min-width: 768px) {
+     .bd-placeholder-img-lg {
+         font-size: 3.5rem;
+     }
+ }
+
+ .b-example-divider {
+     height: 3rem;
+     background-color: rgba(0, 0, 0, .1);
+     border: solid rgba(0, 0, 0, .15);
+     border-width: 1px 0;
+     box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+ }
+
+ .b-example-vr {
+     flex-shrink: 0;
+     width: 1.5rem;
+     height: 100vh;
+ }
+
+ .bi {
+     vertical-align: -.125em;
+     fill: currentColor;
+ }
+
+ .navbar-dark {
+     padding-right: 17px;
+ }
+
+ .lead {
+     font-size: 40px;
+     padding-top: 10px;
+     font-weight: lighter;
+ }
+
+ .text {
+     font-size: 25px;
+     font-weight: lighter;
+ }
+
+
+ .nav-scroller {
+     position: relative;
+     z-index: 2;
+     height: 2.75rem;
+     overflow-y: hidden;
+ }
+
+ .nav-scroller .nav {
+     display: flex;
+     flex-wrap: nowrap;
+     padding-bottom: 1rem;
+     margin-top: -1px;
+     overflow-x: auto;
+     text-align: center;
+     white-space: nowrap;
+     -webkit-overflow-scrolling: touch;
+ }
+
+ .card {
+     height: 100%;
+ }
+
+ .btn-group {
+     position: absolute;
+     bottom: 0;
+     left: 25;
+
+ }
+
+ .card-body {
+     background-color: ;
+     height: 150px;
+     position: relative;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     text-align: center;
+ }
+
+ .card-body:hover {
+     background-color: aliceblue;
+ }
+
+ .btn-group-vertical > .btn,
+ .btn-group > .btn {
+     position: relative;
+     flex: 1 1 auto;
+     bottom: 10px;
+     right: 50%;
+     background-color: rgb(2, 3, 129);
+     color: white;
+ }

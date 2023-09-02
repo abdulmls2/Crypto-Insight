@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import requests
 from django.http import HttpResponse
 
@@ -6,15 +6,16 @@ from django.http import HttpResponse
 # Create your views here.
 
 def home_view(request):
+    # Fetch cryptocurrency market data from the CoinGecko API
     url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=USD&order=market_cap_desc&per_page=100&page=1&sparkline=false'
+
+    # Fetch and parse the cryptocurrency market data
     data = requests.get(url).json()
 
-    # Grab Crypto News Data
+    # Fetch cryptocurrency news data from the CryptoCompare API
     newses = requests.get("https://min-api.cryptocompare.com/data/v2/news/?lang=EN").json()
 
-    # for item in data:
-    #     item['market_cap'] = "{:,.0f}".format(item['market_cap'])
-
+    # Function to format market capitalization values
     def format_market_cap(market_cap):
         if market_cap >= 1_000_000_000:
             return "{:,.2f}B".format(market_cap / 1_000_000_000)
@@ -23,29 +24,16 @@ def home_view(request):
         else:
             return "{:,.2f}".format(market_cap)
 
-    search_term = request.GET.get('search')
-    if search_term:
-        search_term = search_term.lower()
-        data = [item for item in data if 'name' in item and search_term in item['name'].lower()]
+    # Loop through the cryptocurrency data and format market capitalization values
     for item in data:
         if 'market_cap' in item and isinstance(item['market_cap'], (int, float)):
             item['market_cap'] = format_market_cap(item['market_cap'])
 
+    # Context dictionary containing the cryptocurrency data and news data
     context = {
-        'data': data,
-        'newses': newses['Data']
+        'data': data,  # Cryptocurrency market data
+        'newses': newses['Data']  # Cryptocurrency news data
     }
 
+    # Render the main HTML template with the context data
     return render(request, 'positions/main.html', context)
-
-
-def prices(request):
-    notfound = False
-    if request.method == 'POST':
-        quote = request.POST.get('quote').upper()
-        prices = requests.get(
-            "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=" + quote + "&tsyms=USD").json()
-        return render(request, 'crypto_proj/prices.html', {'quote': quote, 'prices': prices})
-    else:
-        notfound = True
-    return render(request, 'crypto_proj/prices.html', {'notfound': notfound})

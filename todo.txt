@@ -1,0 +1,3 @@
+-remove extra views code  -- DONE
+-remove index.html file -- DONE
+remove staticfiles folder -- DONE

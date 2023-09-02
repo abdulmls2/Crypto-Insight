@@ -1,156 +1,34 @@
-<!doctype html>
+{% load static %}
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <!--CSS File Link-->
+    <link rel="stylesheet" type="text/css" href="{% static 'positions/css/styles.css' %}">
     <title>Crypto App</title>
-
-    <style>
-        h1 {
-            color: red;
-            text-align: center;
-        }
-
-        .newscontainer {
-            background-color: white;
-        }
-
-        .table {
-            margin-top: 20px;
-        }
-
-        .recentNews {
-            background-color: rgb(20, 117, 175)
-        }
-
-        .recentNews .news-title {
-            text-align: center;
-            padding-top: 15px;
-            padding-bottom: 15px;
-            font-size: 55px;
-            border: 0.5px solid black;
-            border-radius: 10px;
-            margin-top: 40px;
-        }
-
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-
-        .b-example-divider {
-            height: 3rem;
-            background-color: rgba(0, 0, 0, .1);
-            border: solid rgba(0, 0, 0, .15);
-            border-width: 1px 0;
-            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-        }
-
-        .b-example-vr {
-            flex-shrink: 0;
-            width: 1.5rem;
-            height: 100vh;
-        }
-
-        .bi {
-            vertical-align: -.125em;
-            fill: currentColor;
-        }
-
-        .nav-scroller {
-            position: relative;
-            z-index: 2;
-            height: 2.75rem;
-            overflow-y: hidden;
-        }
-
-        .nav-scroller .nav {
-            display: flex;
-            flex-wrap: nowrap;
-            padding-bottom: 1rem;
-            margin-top: -1px;
-            overflow-x: auto;
-            text-align: center;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .card {
-            height: 100%;
-        }
-
-        .btn-group {
-            position: absolute;
-            bottom: 0;
-            left: 25;
-
-        }
-
-        .card-body {
-            background-color: ;
-            height: 150px;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-        .card-body:hover {
-            background-color: aliceblue;
-        }
-
-        .btn-group-vertical>.btn,
-        .btn-group>.btn {
-            position: relative;
-            flex: 1 1 auto;
-            bottom: 10px;
-            right: 50%;
-            background-color: rgb(2, 3, 129);
-            color: white;
-        }
-
-    </style>
 </head>
 
 <body>
     <div class="container">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="{% url 'home' %}">Crypto News Network</a>
-            <form class="form-inline my-2 my-lg-0 ml-auto" action="" method="get">
+            <h2 class="navbar-brand">Crypto Insights</h2>
+            <form class="form-inline my-2 my-lg-0 ml-auto" method="get">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
-
         </nav>
 
         <div class="text-center">
             <div class="container">
-                <p class="lead">Your one-stop destination for all things cryptocurrency.</p>
+                <p class="lead">Your Ultimate Cryptocurrency Insights.</p>
                 <hr class="my-4">
-                <p>Stay up-to-date on the latest market trends and developments with our comprehensive data on the top 100
-                    cryptocurrencies by market capitalization.</p>
-                <p>Dive deeper into the world of digital currencies with our hand-picked selection of relevant news articles and
-                    expert analysis.</p>
+                <div class="text">
+                    <p>Keep your finger on the pulse of the crypto world with our extensive data on the top 100 cryptocurrencies ranked by market capitalization. Delve deeper into the realm of digital assets with our curated collection of news articles and expert insights.</p>
+                </div>
             </div>
         </div>
 
@@ -219,6 +97,30 @@
             <a href="#top" class="text-center" style="color:white;">Top of Page</a>
         </div>
     </nav>
-</body>
 
+    <script>
+        // Get the table rows
+        const rows = document.querySelectorAll("tbody tr");
+
+        // Get the search input field
+        const searchInput = document.querySelector("input[name='search']");
+
+        // Add an event listener to the search input
+        searchInput.addEventListener("input", () => {
+            const searchTerm = searchInput.value.toLowerCase();
+            // Loop through each row in the table
+            rows.forEach((row) => {
+                const nameColumn = row.querySelector("td:nth-child(3)");
+                const name = nameColumn.textContent.toLowerCase();
+                if (name.includes(searchTerm)) {
+                    // Show the row if it matches the search term
+                    row.style.display = "";
+                } else {
+                    // Hide the row if it does not match the search term
+                    row.style.display = "none";
+                }
+            });
+        });
+    </script>
+</body>
 </html>
