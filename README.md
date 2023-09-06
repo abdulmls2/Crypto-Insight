@@ -21,6 +21,8 @@ Django
 
 Apis
 
+Javascript
+
 HTML/CSS/
 
 Bootstrap
